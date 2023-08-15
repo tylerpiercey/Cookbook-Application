@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>All Recipes</h2>
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <h3>{{ recipe.name }}</h3>
+            <img src=" {{ url_for('static', filename='image_dir/' + recipe.image) }}" alt="{{ recipe.name }}" width="300">
+            <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+            <p><strong>Preparation:</strong> {{ recipe.prep_instructions }}</p>
+            <p><strong>Serving:</strong> {{ recipe.serving_instructions }}</p>
+        </li>
+    {% else %}
+        <p> No recipes avaliable yet.</p>
+    {% endfor %}
+    </ul>
+{% endblock %}
