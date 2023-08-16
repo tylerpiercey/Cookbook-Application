@@ -3,6 +3,7 @@ from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Length
 from flask_wtf.file import FileRequired, FileField
 
+
 class RecipeForm(FlaskForm):
     recipe_name = StringField('Recipe Name', validators=[DataRequired(), Length(min=3, max=100)])
     ingredients = TextAreaField('Ingredients', validators=[DataRequired(), Length(min=10)])
