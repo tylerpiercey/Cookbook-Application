@@ -44,7 +44,9 @@ def add_recipe():
         }])
         df.to_csv(os.path.join(app.config['RECIPE_DATA'], recipe_name.replace(" ", "_") + '.csv'), index=False)
         return redirect(url_for('view_recipes'))
+    print(form)
     return render_template('add_recipe.html', form=form)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

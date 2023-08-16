@@ -1,0 +1,87 @@
+:root {
+    --saffron-orange: #FF9933;
+    --maroon: #800000;
+    --royal-blue: #002366;
+    --emerald-green: #008749;
+    --gold: #FFD700;
+}
+body {
+    font-family: 'Baloo Bhai', cursive;
+    background-color: var(--emerald-green);
+}
+.recipe-card {
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform .2s;
+    background-color: #ffffff;
+}
+.recipe-card:hover {
+    transform: scale(1.05);
+}
+.recipe-card-title {
+    color: var(--saffron-orange);
+    font-size: 24px;
+    margin-top: 10px;
+}
+.recipe-card-content {
+    font-size: 18px;
+    color: var(--maroon);
+}
+.btn-primary {
+    background-color: var(--saffron-orange);
+    border-color: var(--gold);
+}
+.btn-primary:hover, . btn-primary:focus, .btn-primary:active {
+    background-color: var(--royal-blue);
+    border-color: var(--gold);
+}
+.btn-success {
+    background-color: var(--emerald-green);
+    border-color: var(--gold);
+}
+.btn-success:hover, .btn-success:focus, .btn-success:active {
+    background-color: var(--saffron-orange);
+    border-color: var(--gold);
+}
+a {
+    color: var(--saffron-orange);
+    text-decoration: underline var(--gold);
+}
+a:hover, a:focus {
+    color: var(--royal-blue);
+}
+.recipe-card img {
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-control {
+    border: 2px solid var(--gold);
+    border-radius: 5px;
+    padding: 10px 12px;
+}
+.form-control:focus {
+    border-color: var(--saffron-orange);
+    box-shadow: none;
+}
+input[type="file"] {
+    display: none;
+}
+input[type="file"] + label {
+    padding: 10px 15px;
+    background-color: var(--saffron-orange);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+input[type="file"] + label:hover {
+    background-color: var(--royal-blue);
+}
