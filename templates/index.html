@@ -3,14 +3,8 @@
   <h2>View, add or search for recipes based on name or ingredients.</h2>
 
   <div class="inline-container">
-
-    <!-- View Recipes Button -->
     <a href="{{ url_for('view_recipes') }}" class="btn btn-primary">View Recipes</a>
-
-    <!-- Add Recipe Button -->
     <a href="{{ url_for('add_recipe') }}" class="btn btn-success">Add Recipe</a>
-
-    <!-- Search Form -->
     <form action="{{ url_for('search_recipes') }}" method="POST" class="search-form">
         <input type="text" name="query" class="form-control" placeholder="Search for a recipe...">
         <button type="submit" class="btn btn-primary">Search</button>
