@@ -61,16 +61,17 @@ def delete_recipe(recipe_name):
 
 @app.route('/search', methods=['GET', 'POST'])
 def search_recipes():
+    form = RecipeForm()
     if request.method == "POST":
         query = request.form.get('query')
         matching_recipes = []
         for file in os.listdir(app.config['RECIPE_DATA']):
             if file.endswith('.csv'):
-                recipe = pd.read_csv(os.path.join(app.config['RECIPE_DATA'], file)).iloc[0]
+                recipe = pd.read_csv(os.path.join(app.config['RECIPE_DATA'], file)).iloc[0].to_dict()
                 if query.lower() in recipe['name'].lower() or query.lower() in recipe['ingredients'].lower():
                     matching_recipes.append(recipe)
-        return render_template('recipes.html', recipes=matching_recipes)
-    return render_template('search.html')
+        return render_template('search_results.html', recipes=matching_recipes)
+    return render_template('search.html', form=form)
 
 
 if __name__ == '__main__':

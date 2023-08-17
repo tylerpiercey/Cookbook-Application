@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search Results</h2>
+<ul>
+    {% for recipe in recipes %}
+    <div class="recipe-card">
+        <img src="{{ url_for('static', filename='RECIPE_IMG/' + recipe.image) }}" alt="Recipe Image">
+        <h2 class="recipe-card-title">{{ recipe.name }}</h2>
+        <p class="recipe-card-content"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+        <p class="recipe-card-content"><strong>Preparation:</strong> {{ recipe.prep_instructions }}</p>
+        <p class="recipe-card-content"><strong>Serving:</strong> {{ recipe.serving_instructions }}</p>
+    </div>
+    {% else %}
+        <p>No matching recipes found.</p>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('homepage') }}" class="btn btn-secondary mt-3">Return Home</a>
+{% endblock %}

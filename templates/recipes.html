@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<a href="{{ url_for('homepage') }}" class="btn btn-secondary mt-3 return-home-button">Return Home</a>
     <h2>All Recipes</h2>
     <ul>
         {% for recipe in recipes %}

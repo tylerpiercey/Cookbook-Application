@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<a href="{{ url_for('homepage') }}" class="btn btn-secondary mt-3 return-home-button">Return Home</a>
   <h2> Add New Recipe</h2>
   <form method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
@@ -20,8 +21,9 @@
           {{ form.serving_instructions(class="form-control") }}
         </div>
         <div class="form-group">
-          {{ form.image.label }}<br>
-          {{ form.image }}
+          {{ form.image.label(for='image') }}<br>
+          <input type="file" id="image" name="image" style="display: none;">
+          <label for="image" class="btn-file-upload">Upload Recipe Image</label>
         </div>
         <input type="submit" value="Add Recipe" class="btn btn-primary">
   </form>
