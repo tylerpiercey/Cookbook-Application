@@ -6,13 +6,14 @@ import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
-app.config['RECIPE_DATA'] = os.path.join('static', 'data_dir', '')
-app.config['RECIPE_IMG'] = os.path.join('static', 'image_dir', '')
+app.config['RECIPE_DATA'] = os.path.join('static', 'RECIPE_DATA', '')
+app.config['RECIPE_IMG'] = os.path.join('static', 'RECIPE_IMG', '')
 
 
 @app.route('/')
 def homepage():
-    return render_template('index.html')
+    form = RecipeForm()
+    return render_template('index.html', form=form)
 
 
 @app.route('/recipes')
@@ -44,8 +45,31 @@ def add_recipe():
         }])
         df.to_csv(os.path.join(app.config['RECIPE_DATA'], recipe_name.replace(" ", "_") + '.csv'), index=False)
         return redirect(url_for('view_recipes'))
-    print(form)
+    print(form.errors)
     return render_template('add_recipe.html', form=form)
+
+
+@app.route('/delete_recipe/<recipe_name>', methods=['POST'])
+def delete_recipe(recipe_name):
+    try:
+        os.remove(os.path.join(app.config['RECIPE_DATA'], recipe_name.replace(" ", "_") + '.csv'))
+    except Exception as e:
+        print(e)
+    return redirect(url_for('view_recipes'))
+
+
+@app.route('/search', methods=['GET', 'POST'])
+def search_recipes():
+    if request.method == "POST":
+        query = request.form.get('query')
+        matching_recipes = []
+        for file in os.listdir(app.config['RECIPE_DATA']):
+            if file.endswith('.csv'):
+                recipe = pd.read_csv(os.path.join(app.config['RECIPE_DATA'], file)).iloc[0]
+                if query.lower() in recipe['name'].lower() or query.lower() in recipe['ingredients'].lower():
+                    matching_recipes.append(recipe)
+        return render_template('recipes.html', recipes=matching_recipes)
+    return render_template('search.html')
 
 
 if __name__ == '__main__':

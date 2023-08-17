@@ -10,20 +10,25 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-5">Recipe Collection</h1>
+    <h1 class="mt-5">Indian Cuisine Cookbook</h1>
     <hr>
     {% block content %}
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            {{ form.image.label }}<br>
+            {{ form.image(id="file-upload") }}
+            <label for="file-upload">Choose Recipe Image</label>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+    {% for recipe in recipes%}
+    <div class="recipe-card">
+        <img src="{{ recipe.static/RECIPE_IMG/ }}" alt="Recipe Image">
+        <h2 class="recipe-card-title">{{ recipe.name}}</h2>
+        <p class="recipe-card-content">{{ recipe.description }}</p>
+    </div>
+    {% endfor %}
     {% endblock %}
-</div>
-<div class="recipe-card">
-    <img src="path" alt="Recipe Image">
-    <h2 class="recipe-card-title">Recipe Name</h2>
-    <p class="recipe-card-content">Short description or ingredients of the recipe.</p>
-</div>
-<div class="form-group">
-    {{ form.image.label }}<br>
-    {{ form.image(id="file-upload") }}
-    <label for="file-upload">Choose Recipe Image</label>
 </div>
 </body>
 </html>

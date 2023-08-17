@@ -4,14 +4,17 @@
     <ul>
         {% for recipe in recipes %}
         <div class="recipe-card">
-            <img src="{{ url_for('static', filename='image_dir/' + recipe.image) }}" alt="{{ recipe.name }}">
+            <img src="{{ url_for('static', filename='RECIPE_IMG/' + recipe.image) }}" alt="{{ recipe.name }}">
             <h2 class="recipe-card-title">{{ recipe.name }}</h2>
             <p class="recipe-card-content"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
             <p class="recipe-card-content"><strong>Preparation:</strong> {{ recipe.prep_instructions }}</p>
             <p class="recipe-card-content"><strong>Serving:</strong> {{ recipe.serving_instructions }}</p>
+            <form method="POST" action="{{ url_for('delete_recipe', recipe_name=recipe.name) }}" style="display: inline;">
+                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this recipe?')">
+            </form>
         </div>
     {% else %}
-        <p> No recipes avaliable yet.</p>
+        <p> No recipes available yet.</p>
     {% endfor %}
     </ul>
 {% endblock %}
