@@ -23,7 +23,7 @@
     </form>
     {% for recipe in recipes%}
     <div class="recipe-card">
-        <img src="{{ recipe.static/RECIPE_IMG/ }}" alt="Recipe Image">
+        <img src="{{ url_for('static', filename='RECIPE_IMG/' + recipe.image) }}" alt="Recipe Image">
         <h2 class="recipe-card-title">{{ recipe.name}}</h2>
         <p class="recipe-card-content">{{ recipe.description }}</p>
     </div>

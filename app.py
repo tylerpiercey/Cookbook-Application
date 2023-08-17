@@ -18,12 +18,13 @@ def homepage():
 
 @app.route('/recipes')
 def view_recipes():
+    form = RecipeForm()
     recipes = []
     for file in os.listdir(app.config['RECIPE_DATA']):
         if file.endswith('.csv'):
-            recipe = pd.read_csv(os.path.join(app.config['RECIPE_DATA'], file)).iloc[0]
+            recipe = pd.read_csv(os.path.join(app.config['RECIPE_DATA'], file)).iloc[0].to_dict()
             recipes.append(recipe)
-    return render_template('recipes.html', recipes=recipes)
+    return render_template('recipes.html', form=form, recipes=recipes)
 
 
 @app.route('/add_recipe', methods=['POST', 'GET'])
